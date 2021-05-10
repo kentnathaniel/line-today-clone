@@ -50,11 +50,11 @@ const App = ({ location }) => {
       <Route
         path='/bookmarks'
         exact
-        render={() => <BookmarkList bookmarkList={bookmarkList}></BookmarkList>}>
+        render={() => <BookmarkList toggleBookmarkHandler={toggleBookmarkHandler} bookmarkList={bookmarkList}></BookmarkList>}>
       </Route>
       {categoryData && <Route
         path='/'
-        render={() => <PageContent bookmarkList={bookmarkList} content={categoryData[location.pathname.replace('/', '')]}></PageContent>}>
+        render={() => <PageContent toggleBookmarkHandler={toggleBookmarkHandler} bookmarkList={bookmarkList} content={categoryData[location.pathname.replace('/', '')]}></PageContent>}>
       </Route>}
     </Switch>
   </>
