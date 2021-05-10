@@ -22,11 +22,11 @@ const PageContent = ({ content, bookmarkList, toggleBookmarkHandler }) => {
                 <div className='card m-1' style={{ width: '20%' }}>
                   {/* {console.log(url)} */}
                   {url && <a href={url.url}>
-                    {thumbnail && <img style={{ width: '100%', height: '250px', backgroundSize: 'cover' }} className='' src={`${THUMBNAIL_PATH}${thumbnail.hash}/w580`} />}
+                    {thumbnail && <img alt={title} style={{ width: '100%', height: '250px', backgroundSize: 'cover' }} className='' src={`${THUMBNAIL_PATH}${thumbnail.hash}/w580`} />}
                   </a>}
                   {publisher && <p>Publisher: {publisher}</p>}
-                  <a>
-                    <p>{article.title}</p>
+                  <a href={url.url}>
+                    <p>{title}</p>
                   </a>
                   <button className={isArticleBookmarked ? 'btn-success' : null} onClick={() => toggleBookmarkHandler(article)}>Bookmark</button>
                 </div>
