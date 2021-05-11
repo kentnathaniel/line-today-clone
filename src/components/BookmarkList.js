@@ -2,7 +2,7 @@ const THUMBNAIL_PATH = 'https://obs.line-scdn.net/'
 
 const BookmarkList = ({ bookmarkList, toggleBookmarkHandler }) => {
   return (
-    <div className='d-flex card'>
+    <div className='d-flex card w-100'>
       <h1>Bookmarked Pages :</h1>
       <div className='d-flex card flex-row'>
         {bookmarkList.map(bookmark => {
