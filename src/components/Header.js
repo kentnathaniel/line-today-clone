@@ -7,9 +7,9 @@ import './Header.scss'
 
 const Header = ({ categoryList, location }) => {
   // { categoryList, location, match }
-  useEffect(() => {
-    console.log(categoryList, location)
-  }, [categoryList, location])
+  // useEffect(() => {
+  //   console.log(categoryList, location)
+  // }, [categoryList, location])
 
   return (
     <>
