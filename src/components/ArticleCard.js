@@ -1,4 +1,5 @@
 import './ArticleCard.scss'
+import { GoBookmark } from "react-icons/go";
 
 const LINE_IMAGE_PATH = 'https://obs.line-scdn.net/'
 
@@ -23,16 +24,15 @@ const ArticleCard = ({ article, bookmarkList, toggleBookmarkHandler }) => {
           alt={title}
           src={thumbnailPath} />
       </a>
-      <div className='d-flex w-100 justify-content-between'>
+      <div className='article-content-top'>
         {publisher && <p>Publisher: {publisher}</p>}
-        <button
-          className={isArticleBookmarked ? 'btn-success' : null}
-          onClick={() => toggleBookmarkHandler(article)}>
-          Bookmark
-      </button>
+        <GoBookmark
+          onClick={() => toggleBookmarkHandler(article)}
+          className={isArticleBookmarked ? 'bookmark-icon bookmarked' : 'bookmark-icon'}>
+        </GoBookmark>
       </div>
       <a href={url.url}>
-        <p>{title}</p>
+        <p className='article-title'>{title}</p>
       </a>
     </div>
   )
