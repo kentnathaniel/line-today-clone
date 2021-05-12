@@ -1,6 +1,7 @@
 .slider {
   display: flex;
   position: relative;
+  border-radius: 20px;
   height: 40vh;
   width: 50vw;
   margin: 50px 0px 30px 0px;
@@ -27,9 +28,6 @@
   .slide-caption {
     position: absolute;
     display: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     align-items: center;
     justify-content: center;
     padding: 10px;
@@ -37,10 +35,13 @@
     height: 60px;
     background-color: white;
     bottom: 0px;
-    transform: translateY(50%);
 
     a {
       text-decoration: none;
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: wrap;
+      overflow: hidden;
     }
 
     h3 {
@@ -53,38 +54,44 @@
 
 .slide-caption.active {
   display: flex;
+  transform: translateY(50%);
 }
 
+.left-arrow,
 .right-arrow {
-  position: absolute;
-  top: 45%;
-  right: 32px;
+  width: 30px;
   font-size: 3rem;
-  color: #000;
-  z-index: 10;
+  color: rgb(58, 58, 58);
   cursor: pointer;
   user-select: none;
 }
 
-.left-arrow {
+.arrow-wrapper {
+  height: 100%;
   position: absolute;
-  top: 45%;
-  left: 32px;
-  font-size: 3rem;
-  color: #000;
+  display: flex;
+  width: auto;
+  height: 100%;
   z-index: 10;
-  cursor: pointer;
-  user-select: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-wrapper.left {
+  left: 0;
+}
+
+.arrow-wrapper.right {
+  right: 0;
 }
 
 .slide {
   object-fit: cover;
   opacity: 0;
-  transition-duration: 1s ease;
+  transition: all 1s ease;
 }
 
 .slide.active {
   opacity: 1;
-  transition-duration: 1s;
-  transform: scale(1.08);
+  transition-duration: opacity 1s ease;
 }

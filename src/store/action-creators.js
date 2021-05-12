@@ -17,7 +17,13 @@ export const fetchData = () => {
       const { data: { result } } = await axios.get(ENDPOINT_URL)
       let { categories } = result
 
-      console.log(categories)
+      //Set categoryTitle for Header's Category List
+      const categoryTitle = categories.reduce((acc, category) => {
+        return {
+          ...acc,
+          [category.name.toLowerCase().replace(/\s/g, '')]: category.name
+        }
+      }, {})
 
       //Modify categories array to easier data structure to work with
       categories = categories.reduce((acc, curr) => {
@@ -37,10 +43,13 @@ export const fetchData = () => {
         }
       }, {})
 
+      console.log('test')
+
       dispatch({
         type: ActionTypes.FETCH_DATA_SUCCESS,
         payload: {
-          categoryData: categories
+          categoryData: categories,
+          categoryTitle
         }
       })
 

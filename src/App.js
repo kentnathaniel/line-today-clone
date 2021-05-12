@@ -1,4 +1,3 @@
-import './App.scss';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
 import { useActions } from './hooks/use-actions';
@@ -6,11 +5,16 @@ import PageContent from './components/PageContent';
 import Header from './components/Header';
 import { Redirect, Route, Switch } from 'react-router-dom'
 import BookmarkList from './components/BookmarkList';
+import Footer from './components/Footer';
 
 const App = ({ location }) => {
   const [bookmarkList, setBookmarkList] = useState([])
   const categoryData = useSelector(state => state.categoryData)
   const { fetchData } = useActions()
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [location])
 
   //Lifecycle Hook when First Render The Page
   useEffect(() => {
@@ -57,6 +61,7 @@ const App = ({ location }) => {
         render={() => <PageContent toggleBookmarkHandler={toggleBookmarkHandler} bookmarkList={bookmarkList} content={categoryData[location.pathname.replace('/', '')]}></PageContent>}>
       </Route>}
     </Switch>
+    <Footer></Footer>
   </>
 }
 

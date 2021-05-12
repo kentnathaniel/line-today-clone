@@ -1,26 +1,35 @@
-const THUMBNAIL_PATH = 'https://obs.line-scdn.net/'
+import './BookmarkList.scss'
+import ArticleCard from './ArticleCard'
 
 const BookmarkList = ({ bookmarkList, toggleBookmarkHandler }) => {
-  return (
-    <div className='d-flex card w-100'>
-      <h1>Bookmarked Pages :</h1>
-      <div className='d-flex card flex-row'>
+  let renderedList = (
+    <h1>Sorry, currently you don't have any bookmarks</h1>
+  )  
+
+  if (bookmarkList.length > 0 ) {
+    renderedList = (
+      <>
         {bookmarkList.map(bookmark => {
-          const { publisher, thumbnail, title, url } = bookmark
-          return (
-            <div className='card m-1' style={{ width: '20%' }}>
-              {/* {console.log(url)} */}
-              {url && <a href={url.url}>
-                {thumbnail && <img alt={title} style={{ width: '100%', height: '250px', backgroundSize: 'cover' }} className='' src={`${THUMBNAIL_PATH}${thumbnail.hash}/w580`} />}
-              </a>}
-              {publisher && <p>Publisher: {publisher}</p>}
-              <a href={url.url}>
-                <p>{title}</p>
-              </a>
-              <button className='btn-success' onClick={() => toggleBookmarkHandler(bookmark)}>Un-bookmark</button>
-            </div>)
+          return <ArticleCard
+            article={bookmark}
+            bookmarkList={bookmarkList}
+            toggleBookmarkHandler={toggleBookmarkHandler}>
+          </ArticleCard>
         }
         )}
+      </>
+    )
+  }
+  
+  return (
+    <div className='d-flex flex-wrap justify-content-center'>
+      <div className='bookmark-page-wrapper'>
+        <div className='title-wrapper'>
+          <h1>YOUR BOOKMARKS</h1>
+        </div>
+        <div className='articles-wrapper'>
+          {renderedList}
+        </div>
       </div>
     </div>
   )
