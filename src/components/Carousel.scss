@@ -4,7 +4,7 @@
   border-radius: 20px;
   height: 40vh;
   width: 50vw;
-  margin: 50px 0px 30px 0px;
+  margin: 20px 0px 30px 0px;
   justify-content: center;
   align-items: center;
   z-index: 10;
@@ -86,7 +86,7 @@
 }
 
 .slide {
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0;
   transition: all 1s ease;
 }
@@ -94,4 +94,30 @@
 .slide.active {
   opacity: 1;
   transition-duration: opacity 1s ease;
+}
+
+.selector {
+  display: flex;
+  position: absolute;
+  bottom: 40px;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.dots {
+  background: rgba(255, 255, 255, 0.6);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dots.active {
+  background: rgba(29, 174, 211, 0.6);
+}
+
+@media screen and (max-width: 750px) {
+  .slider {
+    width: 80vw;
+  }
 }

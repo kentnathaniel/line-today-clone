@@ -4,15 +4,19 @@ import './Carousel.scss'
 
 const LINE_IMAGE_PATH = 'https://obs.line-scdn.net/'
 
-const CustomCarousel = ({ articles }) => {
+const Carousel = ({ articles }) => {
   const [current, setCurrent] = useState(0)
   const length = articles.length
 
   useEffect(() => {
-    setTimeout(() => {
-      nextSlide()
-    }, 5000)
-  }, [])
+    const timer = setTimeout(() => {
+      setCurrent(current === length - 1 ? 0 : current + 1)
+    }, 2000)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [current])
 
   const nextSlide = useCallback(() => {
     setCurrent(current === length - 1 ? 0 : current + 1)
@@ -48,8 +52,16 @@ const CustomCarousel = ({ articles }) => {
           </>
         )
       })}
+      <div className='selector'>
+        {articles.map((article, index) => {
+          return (
+            <div onClick={() => setCurrent(index)} className={index === current ? 'dots active' : 'dots'}>
+            </div>
+          )
+        })}
+      </div>
     </section>
   )
 }
 
-export default CustomCarousel
+export default Carousel

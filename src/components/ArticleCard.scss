@@ -40,6 +40,8 @@
 
     p {
       margin: 0px;
+      font-size: 14px;
+      color: rgb(92, 92, 92);
     }
   }
 
@@ -64,5 +66,21 @@
 
   .article-title:hover {
     transform: scale(1.02);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .article-card {
+    width: calc(50% - 10px);
+
+    .article-title {
+      font-size: 14px;
+    }
+
+    .article-content-top {
+      p {
+        font-size: 13px;
+      }
+    }
   }
 }
