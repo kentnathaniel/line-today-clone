@@ -6,10 +6,21 @@ import Header from './components/Header';
 import { Redirect, Route, Switch } from 'react-router-dom'
 import BookmarkList from './components/BookmarkList';
 import Footer from './components/Footer';
+import { css } from '@emotion/react'
+import { GridLoader } from 'react-spinners'
+
+const spinnerStyling = css`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+`
 
 const App = ({ location }) => {
   const [bookmarkList, setBookmarkList] = useState([])
   const categoryData = useSelector(state => state.categoryData)
+  const loading = useSelector(state => state.loading)
   const { fetchData } = useActions()
 
   useEffect(() => {
@@ -43,6 +54,8 @@ const App = ({ location }) => {
 
 
   return <>
+    <GridLoader css={spinnerStyling} color='aqua' loading={loading}></GridLoader>
+
     { categoryData && <>
       <Header
         location={location}
@@ -61,7 +74,7 @@ const App = ({ location }) => {
         render={() => <PageContent toggleBookmarkHandler={toggleBookmarkHandler} bookmarkList={bookmarkList} content={categoryData[location.pathname.replace('/', '')]}></PageContent>}>
       </Route>}
     </Switch>
-    <Footer></Footer>
+    { categoryData && <Footer></Footer>}
   </>
 }
 
