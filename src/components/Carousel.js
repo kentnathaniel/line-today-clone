@@ -9,6 +9,10 @@ const Carousel = ({ articles }) => {
   const length = articles.length
 
   useEffect(() => {
+    if (current > length - 1) {
+      setCurrent(length - 1)
+    }
+
     const timer = setTimeout(() => {
       setCurrent(current === length - 1 ? 0 : current + 1)
     }, 2000)
@@ -16,7 +20,7 @@ const Carousel = ({ articles }) => {
     return () => {
       clearTimeout(timer)
     }
-  }, [current])
+  }, [current, length])
 
   const nextSlide = useCallback(() => {
     setCurrent(current === length - 1 ? 0 : current + 1)
@@ -38,17 +42,15 @@ const Carousel = ({ articles }) => {
         const { thumbnail, title, url } = article
         return (
           <>
-            <div key={index} className={index === current ? 'slide active' : 'slide'}>
+            <a href={url.url} key={index} className={index === current ? 'slide active' : 'slide'}>
               {index === current && <img
                 className='image'
                 src={`${LINE_IMAGE_PATH}/${thumbnail.hash}/w580`}
                 alt={title}></img>}
-            </div>
-            <div className={index === current ? 'slide-caption active' : 'slide-caption'}>
-              <a href={url.url}>
-                <h3>{title}</h3>
-              </a>
-            </div>
+            </a>
+            <a href={url.url} className={index === current ? 'slide-caption active' : 'slide-caption'}>
+              <h3>{title}</h3>
+            </a>
           </>
         )
       })}
