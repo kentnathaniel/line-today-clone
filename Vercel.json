@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/id/portaljson",
+      "destination": "https://today.line.me/id/portaljson"
+    }
+  ]
+}

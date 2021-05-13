@@ -1,12 +1,7 @@
 import axios from 'axios'
 import ActionTypes from './action-types'
 
-// const PROXY_URL = 'https://cors-anywhere.herokuapp.com/'
-const ENDPOINT_URL = 'https://today.line.me/id/portaljson'
-
-// const axiosConfig = {
-//   headers: { 'Access-Control-Allow-Origin': '*' }
-// }
+const ENDPOINT_URL = '/id/portaljson'
 
 export const fetchData = () => {
   return async (dispatch) => {
